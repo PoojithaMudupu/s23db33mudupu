@@ -30,6 +30,7 @@ var selectorRouter = require('./routes/selector');
 
 var Movie = require('./models/movies');
 var resourceRouter = require('./routes/resource');
+//var movie_controlers= require('./controllers/movies');
 var app = express();
 
 
@@ -48,6 +49,7 @@ app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
 app.use('/board', boardRouter);
 app.use('/selector', selectorRouter);
+app.use('/resource', resourceRouter);
 app.use('/resource', resourceRouter);
 //app.use('/movies', movieRouter);
 
@@ -74,16 +76,16 @@ async function recreateDB() {
   await Movie.deleteMany();
   let instance1 = new
     Movie({
-      movie_name: "RRR", MovieDirector: 'Rajamouli',
-      MovieTiming: 2.0
+      movie_name: "RRR", movie_director: 'Rajamouli',
+      movie_timing: 2.0
     });
   let instance2 = new Movie({
-    movie_name: "KGF", MovieDirector: 'Prashant',
-    MovieTiming: 2.5
+    movie_name: "KGF", movie_director: 'Prashant',
+    movie_timing: 2.5
   });
   let instance3 = new Movie({
-    movie_name: "pushpa", MovieDirector: 'sukumar',
-    MovieTiming: 2.3
+    movie_name: "pushpa", movie_director: 'sukumar',
+    movie_timing: 2.3
   });
 
   instance1.save().then(() => {

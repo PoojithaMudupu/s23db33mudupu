@@ -1,8 +1,8 @@
 const mongoose = require("mongoose")
 const movieSchema = mongoose.Schema({
 movie_name: String,
-MovieDirector: String,
-MovieTiming: Number
+movie_director: String,
+movie_timing: Number
 })
 module.exports = mongoose.model("movies",
 movieSchema)
