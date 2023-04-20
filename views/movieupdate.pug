@@ -1,0 +1,44 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance for detail
+  else 
+    - let movieid = toShow._id
+    - let movie_name = toShow.movie_name
+    - let movie_director = toShow.movie_director
+    - let movie_timing = toShow.movie_timing
+
+    div.row(class='mb-2')
+      div.mr-1 ID is
+      div #{movieid}
+      - let actionid = "/resource/movies/" + movieid
+      form(id='movieForm', action= actionid, method="PUT")
+        div.form-group
+          label.movieAttr(for='movie_name') movie name
+          input#movie_name(type='text', name='movie_name', value= movie_name )
+        div.form-group
+          label.movieAttr(for='movie_director') movie director
+          input#movie_director(type='text', name='movie_director', value= movie_director )
+        div.form-group
+          label.movieAttr(for='movie_timing') movie timing
+          input#movie_timing(type='number', name='movie_timing', value= movie_timing )
+        input(type="submit")
+      script.
+        document.forms['movieForm'].addEventListener('submit', (event) => {
+          event.preventDefault();
+          // TODO do something here to show user that form is being submitted
+          fetch(event.target.action, {
+            method: 'PUT',
+            body: new URLSearchParams(new FormData(event.target)) // event.target is the form
+          }).then((resp) => {
+            return resp.json(); // or resp.text() or whatever the server sends
+          }).then((body) => {
+            alert("Update succeded")
+            // TODO handle body
+          }).catch((error) => {
+            // TODO handle error
+            alert("Update failed " + error )
+          });
+        });

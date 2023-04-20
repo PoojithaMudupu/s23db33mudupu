@@ -44,6 +44,13 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+//app.use(express.static('Dashboard'))
+
+// In your html, note absolute path
+//href='/CSS/styles.css'
+
+
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/movies', moviesRouter);
@@ -68,6 +75,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 // We can seed the collection if needed on
 //server start

@@ -1,0 +1,24 @@
+extends layout
+
+block content
+  h1= title
+  if (toShow == null)
+    h2 No instance for detail
+  else  
+    - let movieid = toShow._id
+    - let movie_name = toShow.movie_name
+    - let movie_director = toShow.movie_director
+    - let movie_timing = toShow.movie_timing
+    div
+      div.row
+        div(class='movieAttr mr-3') movie ID is:
+        div #{movieid}
+      div.row
+        div(class='movieAttr mr-3') movie Name is:
+        div #{movie_name}
+      div.row
+        div(class='movieAttr mr-3') movie Director is:
+        div #{movie_director}
+      div.row
+        div(class='movieAttr mr-3') movie timing is:
+        div #{movie_timing}
