@@ -1,17 +1,19 @@
 extends layout
 
 block content
-  h2= title
-  - var movies=results
+  h1= title
+  - let items = results;
   div(class="container-fluid")
     div(class="row")
-        each m,index  in movies
-            div(class="col-sm-2" onclick =`buy(${index})`) 
-                p MovieName: #{m.movie_name}, 
-                p MovieDirector: #{m.movie_director}, 
-                p MovieTiming: #{m.movie_timing}
+      each item,index in items
+        - let destination = `dispatch(\"/movies/update?id=${item._id}\")`
+        div(class="col-sm-2" class="m-1")
+          h3 #{item.movie_name}
+          p #{item.movie_director}
+          p #{item.timing}
+          button.btn( class="btn-primary ml-1", onclick= destination) Update
   script.
-    function buy(mi)
-    {
-        alert(`You watched a film ${mi+1}`)
+    function dispatch(path){
+      console.log(path);
+      window.location.href=path;
     }
