@@ -17,8 +17,5 @@ router.put('/movies/:id', movie_controller.movie_update_put);
 router.get('/movies/:id', movie_controller.movie_detail);
 // GET request for list of all movie items.
 router.get('/movies', movie_controller.movie_list);
-/* GET detail costume page */
-router.get('/detail', movie_controller.movie_view_one_Page);
-/* GET create costume page */
-router.get('/create', movie_controller.movie_create_Page);
+
 module.exports = router;
